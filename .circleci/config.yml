@@ -25,6 +25,7 @@ jobs:
           platform: managed
           region: ${GOOGLE_COMPUTE_ZONE}
           service-name: decisionservice
+          unauthenticated: true
 workflows:
   "default":
     jobs:
