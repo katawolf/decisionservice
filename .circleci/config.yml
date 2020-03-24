@@ -19,14 +19,12 @@ jobs:
       - checkout
       - cloudrun/init
       - cloudrun/build:
-          tag: 'eu.gcr.io/${GOOGLE_PROJECT_ID}/test-${CIRCLE_SHA1}'
+          tag: 'eu.gcr.io/${GOOGLE_PROJECT_ID}/decisionservice:${CIRCLE_SHA1}'
       - cloudrun/deploy:
-          image: 'eu.gcr.io/${GOOGLE_PROJECT_ID}/test-${CIRCLE_SHA1}'
+          image: 'eu.gcr.io/${GOOGLE_PROJECT_ID}/decisionservice:${CIRCLE_SHA1}'
           platform: managed
           region: ${GOOGLE_COMPUTE_ZONE}
-          service-name: decisionservice-test
-          unauthenticated: true
-          args: '--port 3000'
+          service-name: decisionservice
 workflows:
   "default":
     jobs:
