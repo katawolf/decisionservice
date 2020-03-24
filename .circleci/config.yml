@@ -26,6 +26,7 @@ jobs:
           region: ${GOOGLE_COMPUTE_ZONE}
           service-name: decisionservice-test
           unauthenticated: true
+          args: '--port 3000'
 workflows:
   "default":
     jobs:
