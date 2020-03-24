@@ -15,3 +15,6 @@ workflows:
     "default":
       jobs:
         - "build and test"
+          filters:
+              branches:
+                ignore: master
