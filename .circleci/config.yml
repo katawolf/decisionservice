@@ -12,6 +12,10 @@ jobs:
             - run: npm install
             - run: npm test
 workflows:
-    "default":
-      jobs:
-        - "build and test"
+  "default":
+    jobs:
+      - "build and test":
+          filters:
+            branches:
+              ignore:
+                - master
