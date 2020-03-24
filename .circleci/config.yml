@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@1.1.6
+  cloudrun: circleci/gcp-cloud-run@1.0.2
 jobs:
   "build and test":
     executor:
@@ -11,6 +12,20 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
+  "build and deploy":
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - checkout
+      - cloudrun/init
+      - cloudrun/build:
+          tag: 'eu.gcr.io/${GOOGLE_PROJECT_ID}/test-${CIRCLE_SHA1}'
+      - cloudrun/deploy:
+          image: 'eu.gcr.io/${GOOGLE_PROJECT_ID}/test-${CIRCLE_SHA1}'
+          platform: managed
+          region: ${GOOGLE_COMPUTE_ZONE}
+          service-name: decisionservice-test
+          unauthenticated: true
 workflows:
   "default":
     jobs:
@@ -18,4 +33,9 @@ workflows:
           filters:
             branches:
               ignore:
+                - master
+      - "build and deploy":
+          filters:
+            branches:
+              only:
                 - master
