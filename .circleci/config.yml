@@ -12,7 +12,7 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
-  "build, test and deploy":
+  "build and deploy":
     docker:
       - image: 'cimg/base:stable'
     steps:
@@ -34,7 +34,7 @@ workflows:
             branches:
               ignore:
                 - master
-      - "build, test and deploy":
+      - "build and deploy":
           filters:
             branches:
               only:
