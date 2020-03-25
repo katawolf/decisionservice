@@ -22,16 +22,15 @@ jobs:
           tag: 'eu.gcr.io/${GOOGLE_PROJECT_ID}/decisionservice:${CIRCLE_SHA1}'
       - run:
           command: >
-            SERVICE_NAME=decisionservice
-            gcloud beta run deploy ${SERVICE_NAME} \
-              --image "eu.gcr.io/${GOOGLE_PROJECT_ID}/${SERVICE_NAME}:${CIRCLE_SHA1}" \
+            gcloud beta run deploy decisionservice \
+              --image "eu.gcr.io/${GOOGLE_PROJECT_ID}/decisionservice:${CIRCLE_SHA1}" \
               --platform managed \
               --region ${GOOGLE_COMPUTE_ZONE} \
               --port 3000
             echo
             echo "Service deployed"
             echo
-            GET_GCP_DEPLOY_ENDPOINT=$(gcloud beta run services describe ${SERVICE_NAME} --platform managed --region ${GOOGLE_COMPUTE_ZONE} --format="value(status.address.url)")
+            GET_GCP_DEPLOY_ENDPOINT=${gcloud beta run services describe decisionservice --platform managed --region ${GOOGLE_COMPUTE_ZONE} --format="value(status.address.url)"}
             echo "export GCP_DEPLOY_ENDPOINT=$GET_GCP_DEPLOY_ENDPOINT" >> $BASH_ENV
             source $BASH_ENV
             echo $GCP_DEPLOY_ENDPOINT
