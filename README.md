@@ -24,26 +24,32 @@ Launches the test runner in the interactive watch mode.
 
 Builds the app for production to the `dist` folder.<br />
 
-## Deploy on kubernetes cluster with `kubectl`
+## Deployment management on kubernetes cluster
 
-### `docker build -t jtutzo/katawolf/decisionservice .`
+### With `kubectl`
 
-Builds app and create a docker image.
+First build your app and create a docker image.
 
-### `docker push jtutzo/katawolf/decisionservice`
+`docker build -t jtutzo/katawolf/decisionservice .`
 
-Pushes image on repository
+Push docker image on your repository.
 
-### `kubectl apply -f ./k8s-manifests`
+`docker push jtutzo/katawolf/decisionservice`
 
-Deploys app on kubernetes cluster.
+Deploy app on your kubernetes cluster.
 
-### `kubectl delete -f ./k8s-manifests`
+`kubectl apply -f ./k8s`
 
-Deletes app on kubernetes cluster.
+After for remove app on your kubernetes cluster.
 
-## Deploy on kubernetes cluster with `skaffold`
+`kubectl delete -f ./k8s`
 
-### `skaffold run`
+### With `skaffold`
 
-Builds and deploys app on kubernetes cluster.
+Build and deploy on your kubernetes cluster.
+
+`skaffold run`
+
+After for remove app on your kubernetes cluster.
+
+`skaffold delete`
