@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: decisionservice
+spec:
+  type: ClusterIP
+  selector:
+    app: decisionservice
+  ports:
+    - name: decisionservice
+      port: 8080
+      targetPort: 8080
