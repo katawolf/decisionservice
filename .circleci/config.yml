@@ -26,7 +26,7 @@ jobs:
               --image "eu.gcr.io/${GOOGLE_PROJECT_ID}/decisionservice:${CIRCLE_SHA1}" \
               --platform managed \
               --region ${GOOGLE_COMPUTE_ZONE} \
-              --port 3000
+              --port 8080
             echo
             echo "Service deployed"
             echo

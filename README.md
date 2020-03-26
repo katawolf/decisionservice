@@ -1,11 +1,15 @@
 # Decision service
 
-## Docker
+## Kubernetes (deploy on cluster)
 
-### `docker build -t [IMAGE] .`
+### `docker build -t jtutzo/katawolf/decisionservice .`
 
-Build  app and docker image
+Build app and docker image
 
-### `docker run --rm -p 3000:3000 [IMAGE]`
+### `kubectl apply -f ./k8s-manifests`
 
-Launch container
+Deploy on kubernetes cluster
+
+### `kubectl delete -f ./k8s-manifests`
+
+Delete on kubernetes cluster
